@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import axios from "axios";
+import axios from 'axios';
 
 const App = () => {
   const [city, setCity] = useState('Vadodara');
   const [weather, setWeather] = useState(null);
   const [error, setError] = useState('');
-  
+
+  const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
+
   const fetchWeather = async () => {
     try {
-      
       const res = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
       );
@@ -27,13 +28,13 @@ const App = () => {
   };
 
   useEffect(() => {
-    fetchWeather(); // Auto-fetch on load
+    fetchWeather();
   }, []);
 
   return (
     <main>
       <div className='h-screen w-screen flex justify-center items-center bg-[url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e")] bg-cover bg-center'>
-        <div className="h-auto w-[350px] flex flex-col justify-start items-center p-6 bg-white bg-opacity-80 rounded-lg shadow-lg text-center">
+        <div className="h-auto w-[350px] flex flex-col justify-start items-center p-6 bg-transparent shadow-black  bg-opacity-80 rounded-lg shadow-lg text-center">
           <h2 className="text-2xl font-bold text-blue-700 mb-4">🌤️ Weather Forecast</h2>
 
           <input
