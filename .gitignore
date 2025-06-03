@@ -23,4 +23,4 @@ dist-ssr
 *.sln
 *.sw?
 
-const apiKey = '0e75aa6eefbc2ccbca219559061b872f';
+.env
