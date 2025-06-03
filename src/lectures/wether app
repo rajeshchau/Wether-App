@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import axios from "axios";
 
 const App = () => {
   const [city, setCity] = useState('Vadodara');
@@ -10,10 +9,10 @@ const App = () => {
   const fetchWeather = async () => {
     try {
       const apiKey = '0e75aa6eefbc2ccbca219559061b872f';
-      const res = await axios.get(
+      const res = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
       );
-      const data = res.data;
+      const data = await res.json();
       if (data.cod === 200) {
         setWeather(data);
         setError('');
@@ -33,7 +32,7 @@ const App = () => {
   return (
     <main>
       <div className='h-screen w-screen flex justify-center items-center bg-[url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e")] bg-cover bg-center'>
-        <div className="h-auto w-[350px] flex flex-col justify-start items-center p-6 bg-white bg-opacity-80 rounded-lg shadow-lg text-center">
+        <div className="h-auto w-[350px] flex flex-col justify-start items-center p-6 bg-transparent shadow-black bg-opacity-80 rounded-lg shadow-lg text-center">
           <h2 className="text-2xl font-bold text-blue-700 mb-4">🌤️ Weather Forecast</h2>
 
           <input
